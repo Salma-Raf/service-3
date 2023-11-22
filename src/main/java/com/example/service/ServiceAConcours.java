@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.example.Entities.Concours;
 import com.example.dto.DTOResponseConcours;
 import com.example.dto.DtoRequestConcours;
 import com.example.mapper.MapperConcours;
 import com.example.repo.RepoConcours;
-import com.example.webException.WebException404;
-import com.example.webException.WebException500;
+import com.example.exception.Exception404;
 
 
 
@@ -33,18 +33,17 @@ public class ServiceAConcours {
 
 	public void deleteConcours(Integer Id) {
 		Concours concours2=repoConcours.findById(Id).orElse(null);
-		if(admin2==null) { throw new WebException404("admin not found");}
-	   repoAdmin.delete(admin2);
+		if(concours2==null) { throw new Exception404("concours not found");}
+	   repoConcours.delete(concours2);
 	}
 	
-	public DTOResponseAdmin ModifyAdmin(DtoRequestAdmin dtoRequestAdmin,Integer Id){
-		Admin admin2=repoAdmin.findById(Id).orElse(null);
-		if(admin2==null) { throw new Exception404("admin not found"); }
-		Admin admin= mapperAdmin.requestAdminToAdmin(dtoRequestAdmin);
 	
-		return mapperAdmin.adminToResponseDto(repoAdmin.save(admin));
+	public DTOResponseConcours ModifyConcours(DtoRequestConcours dtoRequestConcours,Integer Id){
+		Concours concours2=repoConcours.findById(Id).orElse(null);
+		if(concours2==null) { throw new Exception404("concours not found"); }
+		Concours concours= mapperConcours.requestConcoursToConcours(dtoRequestConcours);
+	
+		return mapperConcours.concoursToResponseDto(repoConcours.save(concours));
 	}
-	public void AssignRole(Admin admin) {
-		
-	}
+	
 }
