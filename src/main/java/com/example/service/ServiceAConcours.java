@@ -24,6 +24,7 @@ import com.example.dto.DTOResponseConcours;
 import com.example.dto.DtoRequestConcours;
 import com.example.mapper.MapperConcours;
 import com.example.repo.RepoConcours;
+import com.example.webException.WebException404;
 import com.example.webException.WebException500;
 
 
@@ -44,9 +45,9 @@ public class ServiceAConcours {
 		 return mapperConcours.concoursToResponseDto(concours);
 	}
 
-	public void deleteAdmin(Integer Id) {
-		Admin admin2=repoAdmin.findById(Id).orElse(null);
-		if(admin2==null) { throw new Exception404("admin not found");}
+	public void deleteConcours(Integer Id) {
+		Concours concours2=repoConcours.findById(Id).orElse(null);
+		if(admin2==null) { throw new WebException404("admin not found");}
 	   repoAdmin.delete(admin2);
 	}
 	
