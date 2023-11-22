@@ -1,13 +1,4 @@
 package com.example.Entities;
-
-
-
-
-
-
-
-
-
 import java.io.Serializable;
 import java.util.Date;
 

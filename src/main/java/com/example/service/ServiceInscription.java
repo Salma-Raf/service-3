@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.example.Entities.Inscription;
+import com.example.dto.DtoRequestInscription;
+import com.example.dto.DtoResponseInscription;
+import com.example.exception.Exception404;
 import com.example.mapper.MapperInsciption;
 import com.example.repo.RepoInscription;
 
@@ -17,17 +20,16 @@ public class ServiceInscription {
 	RepoInscription repoInscription;
 	
 	public void deleteEtudiant(Integer id ){
-		Etudiant etudiant = repoInscription.findById(id).orElse(null); 
-		if(etudiant==null) { throw new Exception404("etudiant not found");}
-		etudiantRepo.delete(etudiant);	
+		 Inscription kk = repoInscription.findById(id).orElse(null); 
+		if(kk==null) { throw new Exception404("etudiant not found");}
+		repoInscription.delete(kk);	
 		}
-	public List<Etudiant> getAll(){
-		return etudiantRepo.findAll();
+	public List<Inscription> getAll(){
+		return repoInscription.findAll();
 	}
-	public  DtoRespenseEtudiant addCompte(DtoRequestEtudiant dtoRequestEtudiant) {	
-		
-		Etudiant etudiant=	mapperEtudiant.requestEtudiantToEtudiant(dtoRequestEtudiant);
-		etudiant=etudiantRepo.save(etudiant);
-		 return mapperEtudiant.EtudiantToEtudiantResponseDto(etudiant);
+	public  DtoResponseInscription addInscription(DtoRequestInscription dtoRequestInscription) {	
+		 Inscription kk=	mapperInsciption.requesttoInscription(dtoRequestInscription);
+		 kk=repoInscription.save(kk);
+		 return mapperInsciption.InscriptiontoResponse(kk);
 		}
 }
