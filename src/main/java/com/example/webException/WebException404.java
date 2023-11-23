@@ -7,9 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.demo.Exception.ErreurMessage;
-import com.example.demo.Exception.Exception404;
-
+import com.example.exception.ErreurMessage;
+import com.example.exception.Exception404;
 @RestControllerAdvice
 public class WebException404 {
 	@ExceptionHandler(value=Exception404.class)

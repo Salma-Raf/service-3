@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.demo.Exception.ErreurMessage;
-import com.example.demo.Exception.Exception500;
+import com.example.exception.ErreurMessage;
+import com.example.exception.Exception500;
+
+
 @RestControllerAdvice
 public class WebException500 {
 	@ExceptionHandler(value=Exception500.class)
